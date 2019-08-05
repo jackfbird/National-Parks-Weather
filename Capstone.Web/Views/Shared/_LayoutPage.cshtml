@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="body-background">
+    <div id="nav-bar">
+        <a id="logo" href="@Url.Action("Index","Home")"><img src="~/Content/logo.png" /></a>
+        <div class="nav-icon">@Html.ActionLink("HOME", "Index", "Home")</div>
+        <div class="nav-icon"> @Html.ActionLink("SURVEY", "Survey", "Survey")</div>
+        <div class="nav-icon"> @Html.ActionLink("BEST PARKS", "SurveyResult", "Survey")</div>
+    </div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

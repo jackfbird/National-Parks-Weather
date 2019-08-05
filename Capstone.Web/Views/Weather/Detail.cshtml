@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Weather>
+
+@{
+    ViewData["Title"] = "Index";
+    int temp = Convert.ToInt32(ViewBag.Forecast);
+    string fahrenheit = "° F";
+    string celcius = "° C";
+}
+
+<style>
+
+    body {
+        background-color: #51d0de;
+    }
+
+    #heading {
+        font-weight: bold;
+        align-content: center;
+        font-size: large;
+        color: #4f5f76;
+    }
+
+    #forecast {
+        text-align: center;
+    }
+
+    td img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    td {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    tr {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #report {
+        font-weight: bold;
+        font-size: xx-large;
+        text-align: center;
+        color: #4f5f76;
+    }
+
+    #weatherToggle
+    {
+        display: inline-block;
+        float: right;
+        font-weight: bold;
+    }
+
+    img {
+        width: 45%;
+        border: 3px solid white;
+        border-radius: 12px;
+    }
+</style>
+
+<div class="body">
+
+    <h2 id="report">Park Weather Report</h2>
+
+    <div id="weatherToggle">
+        <a asp-action="Detail" asp-route-temp="1" asp-controller="Weather" method="post">
+            <p><div id="bottom">Fahrenheit</div></p>
+        </a>
+
+        <a asp-action="Detail" asp-route-temp="2" asp-controller="Weather" method="post">
+            <p><div id="bottom">Celcius</div></p>
+        </a>
+    </div>
+    <br />
+    <br />
+    <table class="table">
+
+        <tr id="heading">
+            <td>Date</td>
+            <td>Day</td>
+            <td id="forecast">Forecast</td>
+            <td>High Temperature</td>
+            <td>Low Temperature</td>
+            <td>Advisory</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @DateTime.Now.AddDays(item.FiveDayValue - 1).Date.ToShortDateString()
+                </td>
+                <td>
+                    @DateTime.Now.AddDays(item.FiveDayValue - 1).DayOfWeek
+                </td>
+                <td id="images">
+                    <img src="~/img/weather/@item.WeatherImageName" alt="@item.Forecast" />
+                </td>
+                <td>
+                    @if (temp == 1)
+                    {@item.High @(fahrenheit)}
+                    @if (temp == 2)
+                    {@item.CelciusHigh.ToString("0"); @(celcius)
+                }
+                </td>
+                <td>
+                    @if (temp == 1)
+                    {@item.Low @(fahrenheit) }
+                    @if (temp == 2)
+                    {@item.CelciusLow.ToString("0"); @(celcius)
+                } 
+                </td>
+                <td>
+                    @item.WeatherAdvisory
+                    <br />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+
+
+@*If the daily forecast calls for snow, then tell the user to pack snowshoes.
+    d. If the daily forecast calls for rain, then tell the user to pack rain gear and wear waterproof shoes.
+    e. If the daily forecast calls for thunderstorms, tell the user to seek shelter and avoid hiking on
+    exposed ridges.
+    f. If the daily forecast calls for sun, tell the user to pack sunblock.
+    g. If the temperature is going to exceed 75 degrees, tell the user to bring an extra gallon of water.
+    h. If the difference between the high and low temperature exceeds 20 degrees, tell the user to
+    wear breathable layers.
+    i. If the temperature is going to be below 20 degrees, make sure to warn the user of the dangers
+    of exposure to frigid temperatures.*@

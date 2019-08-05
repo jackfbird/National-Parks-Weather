@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Park>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .authorandbody
+    {
+        text-align: center;
+    }
+
+    body {
+        background-color: lightgreen;
+        width: 90%;
+        font-family: sans-serif;
+        margin: 0 auto;
+        border-radius: 2%;
+    }
+
+    thread {
+        text-decoration-color: black;
+        width: 100%;
+    }
+
+    th, td {
+        color: black;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+
+    div.item {
+        vertical-align: top;
+        display: inline;
+        text-align: right;
+        width: 270px;
+    }
+
+    img {
+        width: 50%;
+        border: 3px solid white;
+        border-radius: 12px;
+    }
+
+    .authorandbody {
+        font-size: medium;
+    }
+
+    .title {
+        padding-bottom: 10px;
+    }
+
+    #name {
+        font-weight: bold;
+    }
+
+    #parks {
+        display: inline-block;
+        text-align: center;
+        padding-left: 414px;
+    }
+</style>
+
+
+
+<div class="body">
+
+    <br />
+
+    <div>
+        <h2 id="parks">National Parks Directory</h2>
+
+
+        <table class="TableRecords">
+            <br />
+            <tbody>
+                @foreach (var park in Model)
+                {
+
+
+                    <tr>
+                        
+                        <td class="authorandbody">
+                            <br />
+                            <br />
+                            <div class="title" id="name">
+                                @park.Name
+                                <br>
+                            </div>
+                            <div class="title" id="state">
+                                @park.State
+                            </div>
+                            <br /> 
+                            <a asp-action="Detail" asp-route-id="@park.ParkCode">
+                                <img src="~/img/parks/@park.ParkImageName" alt="Image" />
+                                </a>
+                                <br />
+                                <br />
+                                @park.Description
+                                <br />
+
+                                <br />
+                        </td>
+                        <td></td>
+                        <td></td>
+                     
+                 
+
+                    </tr>
+                   
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+    </div>
+</div>

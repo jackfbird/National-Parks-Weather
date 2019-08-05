@@ -1,0 +1,120 @@
+﻿@model Survey
+
+@{
+    ViewData["Title"] = "NewSurvey";
+    IList<Park> parks = ViewBag.Parks;
+}
+
+<style>
+    body {
+        background-color: lightgreen;
+    }
+
+    img {
+        width: 50%;
+        border: 3px solid white;
+        border-radius: 1px;
+    }
+</style>
+
+<section class="centeredPanel">
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" asp-controller="Survey" asp-action="NewSurvey">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ParkCode" class="control-label">Favorite National Park</label>
+                    <select asp-for="ParkCode">
+                        @foreach (Park park in parks)
+                        {
+                            <option value="@park.ParkCode">@park.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="ParkCode" class="text-danger">Required.</span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label">Email Address</label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger">Required.</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="State" class="control-label">State of Residence</label>
+                    <select asp-for="State" asp-items="Model.state"></select>
+                    <span asp-validation-for="State" class="text-danger">Required.</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActivityLevel" class="control-label">Activity Level</label>
+                    <select asp-for="ActivityLevel" asp-items="Model.activity"></select>
+                    <span asp-validation-for="ActivityLevel" class="text-danger">Required.</span>
+                </div>
+                   
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model Survey
+
+    @{
+        ViewData["Title"] = "NewSurvey";
+        IList<Park> parks = ViewBag.Parks;
+    }
+
+
+
+    <section class="centeredPanel">
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" asp-controller="Survey" asp-action="NewSurvey">
+                    <div class="form-group">
+                        <label asp-for="ParkCode" class="control-label">Favorite National Park</label>
+                        <select asp-for="ParkCode">
+                            @foreach (Park park in parks)
+                            {
+                                <option value="@park.ParkCode">@park.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="@Model.EmailAddress" class="control-label">Your Email</label>
+                        <input asp-for="@Model.EmailAddress" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.State" class="control-label">State of Residence</label>
+                        <select asp-for="@Model.State" asp-items="Model.state"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ActivityLevel" class="control-label">Activity Level</label>
+                        <select asp-for="@Model.ActivityLevel" asp-items="Model.activity"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>*@
+</section>

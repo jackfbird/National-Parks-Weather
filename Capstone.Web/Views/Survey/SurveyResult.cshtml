@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Survey>
+
+@{
+    ViewData["Title"] = "SurveyResult";
+    int count = 0;
+    IList<Park> parks = ViewBag.Parks;
+    string votes = "votes";
+    string vote = "vote";
+}
+
+<style>
+    body {
+        background-color: lightgreen;
+    }
+
+    .heading {
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    img {
+        border: 3px solid white;
+        border-radius: 12px;
+    }
+
+    .attributes {
+        font-size: large;
+    }
+</style>
+
+<div>
+    <table class="table">
+        <thead>
+        <tbody>
+            <tr class="heading">
+                <th>Rank</th>
+                <th>Park Name</th>
+                <th></th>
+                <th>Votes</th>
+                @foreach (var item in Model)
+                {
+
+                    
+
+
+<tr class="attributes">
+                    <td>#@(++count)</td>
+                    <td>@item.ParkName</td>
+                    @foreach (Park park in parks)
+                    {
+                        if (item.ParkCode == park.ParkCode)
+                        {
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@park.ParkCode" asp-controller="Home">
+                                <img src="~/img/parks/@park.ParkImageName" alt="Image" />
+                            </a>
+                        </td>}
+                    }
+                        <td>@item.Votes @if (Convert.ToInt32(item.Votes) > 1)
+                        {@(votes)}
+                        else
+                        {@(vote)}
+    </td>
+
+
+   </tr>
+
+            }
+            </tbody>
+        </table>
+    </div>

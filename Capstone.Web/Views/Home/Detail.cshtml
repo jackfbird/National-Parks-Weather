@@ -1,0 +1,168 @@
+﻿@model Capstone.Web.Models.Park
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<style>
+    body {
+        background-color: lightgreen;
+        width: 90%;
+        font-family: sans-serif;
+        margin: 0 auto;
+        border-radius: 2%;
+    }
+
+    thread {
+        text-decoration-color: black;
+        width: 100%;
+    }
+
+    th, td {
+        color: black;
+        width: 100%;
+    }
+
+    div.item {
+        vertical-align: top;
+        text-align: right;
+        width: 270px;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    .authorandbody {
+        font-size: medium;
+    }
+
+    .title {
+        padding-bottom: 10px;
+    }
+
+    #name {
+        font-weight: bold;
+    }
+
+    #parks {
+        text-align: center;
+    }
+
+    .table {
+        display: table;
+    }
+
+    .parkName {
+        text-align: center;
+        margin-left: 30px;
+        font-weight: bold;
+    }
+
+    #parkName {
+        font-weight: bold;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 50px 0;
+    }
+
+    td {
+        padding: 10px 0;
+    }
+
+    #parkImage {
+        margin-left: 340px;
+    }
+
+    #weatherReport {
+        font-weight: bold;
+        font-size: x-large;
+        text-align: center;
+    }
+
+    .bottom {
+        margin-left: 44px;
+    }
+
+    #bottom {
+        font-weight: bold;
+    }
+
+    img {
+        border: 3px solid white;
+        border-radius: 12px;
+    }
+</style>
+
+
+<div class="parkName">
+    <h2 id="parkName">
+        @Model.Name
+    </h2>
+</div>
+
+<br />
+
+<div id="parkImage">
+    <img src="~/img/parks/@Model.ParkImageName" alt="Image" />
+</div>
+
+<br />
+<div>
+    <table class="table">
+        <thead>
+            <tr class="white">
+                <th>Location</th>
+                <th>Acreage</th>
+                <th>Elevation (In Feet)</th>
+                <th>Miles Of Trail</th>
+                <th>Number of Campsites</th>
+                <th>Annual Visitor Count</th>
+                <th>Entry Fee</th>
+                <th>Number of Animal Species</th>
+                <th>Climate</th>
+                <th>Year Founded</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.State</td>
+                <td>@Model.Acreage</td>
+                <td>@Model.ElevationInFeet</td>
+                <td>@Model.MilesOfTrail</td>
+                <td>@Model.NumberOfCampsites</td>
+                <td>@Model.AnnualVisitorCount</td>
+                <td>$@Model.EntryFee</td>
+                <td>@Model.NumberofAnimalSpecies</td>
+                <td>@Model.Climate</td>
+                <td>@Model.YearFounded</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+<div class="bottom">
+    <p><div id="bottom">Description</div> @Model.Description</p>
+    <br />
+    <p><div id="bottom">Inspirational Quote</div>@Model.Quote</p>
+    <br />
+    <p><div id="bottom">Inspirational Quote Source</div>@Model.QuoteSource</p>
+</div>
+
+<br />
+<br />
+<a asp-action="Detail" asp-route-id="@Model.ParkCode" asp-controller="Weather">
+    <p><div id="weatherReport">Click here for forecast <br /> <br /><img src="~/img/weather/forecast.png" alt="Image" /></div></p></a>
+    
+
+     
+
+
